@@ -19,7 +19,7 @@ module.exports.sendMessage = async (req, res) => {
       reciverId,
       message,
     });
-    if (newMessage ) {
+    if (newMessage) {
       conversation.messages.push(newMessage._id);
     }
     // await conversation.save();
@@ -29,6 +29,25 @@ module.exports.sendMessage = async (req, res) => {
     );
   } catch (error) {
     console.log("error in send message :>> ", error.message);
+    res.status(401).send("Internal Server Error");
+  }
+};
+module.exports.getMessage = async (req, res) => {
+  try {
+    let { id: userToChat } = req.params;
+    let senderId = res.user._id;
+    let conversation = await conversationModel
+      .findOne({
+        participants: { $all: [senderId, userToChat] },
+      })
+      .populate("messages");
+    if (!conversation) {
+      res.status(200).send([]);
+    }
+    let messages = conversation.messages;
+    res.status(200).send(messages);
+  } catch (error) {
+    console.log("error in get message :>> ", error.message);
     res.status(401).send("Internal Server Error");
   }
 };
