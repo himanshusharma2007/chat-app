@@ -10,8 +10,11 @@ const messageSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
+    message:{
+      type:String,
+      default:null,
+    }
   },
   { timestamps: true }
 );
-const messageModel = mongoose.model("Mesasge", messageSchema);
-module.exports = messageModel;
+module.exports.messageModel = mongoose.model("Mesasge", messageSchema);

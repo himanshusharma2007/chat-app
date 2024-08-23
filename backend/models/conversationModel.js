@@ -18,5 +18,8 @@ const conversationSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-const conversationModel = mongoose.model("Conversation", conversationSchema);
-module.exports = conversationModel;
+module.exports.conversationModel = mongoose.model(
+  "Conversation",
+  conversationSchema
+);
+

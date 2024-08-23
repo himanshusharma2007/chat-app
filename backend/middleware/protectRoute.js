@@ -1,8 +1,9 @@
 const jwt = require("jsonwebtoken");
-const userModel = require("../models/userModel");
+const {userModel} = require("../models/userModel.js");
 const protectRoute = async (req, res, next) => {
   try {
-    let token = req.cookies;
+    console.log(' req.cookies.jwt :>> ',  req.cookies);
+    let token = req.cookies.jwt;
     if (!token) {
       res.status(401).send("Unarthorized user access");
     }
@@ -10,7 +11,7 @@ const protectRoute = async (req, res, next) => {
     if (!decode) {
       res.status(401).send("Unarthorized user access");
     }
-    const user = await userModel.findById({ _id: decode.userId });
+    const user = await userModel.findOne({ _id: decode.userId });
     if (!user) {
       res.status(401).send("Unarthorized user access");
     }
