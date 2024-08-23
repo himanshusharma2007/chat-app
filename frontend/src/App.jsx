@@ -4,6 +4,7 @@ const App = () => {
   return (
     <div className='lg:bg-red-500 lmd:bg-green-500 w-40 h-40 p-4 mt-4'>
       looks like tailwind is working 
+      <button className='btn btn-primary'></button>
     </div>
   )
 }
