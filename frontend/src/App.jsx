@@ -1,11 +1,12 @@
 import React from 'react'
-
+import Login from './pages/Login'
+import './App.css';
+import SignUp from './pages/Signup';
 const App = () => {
   return (
-    <div className='lg:bg-red-500 lmd:bg-green-500 w-40 h-40 p-4 mt-4'>
-      looks like tailwind is working 
-      <button className='btn btn-primary'></button>
-    </div>
+  <div className="bg-image flex justify-center items-center  md:w-screen md:min-h-screen">
+    <SignUp />
+  </div>
   )
 }
 
