@@ -2,3 +2,32 @@
 background: rgb(201,144,239);
 background: linear-gradient(29deg, rgba(201,144,239,0.3598432219430302) 13%, rgba(81,20,122,0.4609668174486482) 79%);
 }
+.bgEmail{
+    background-image: url('./assets/images/email-pattern.webp');
+    background-position: center;
+    background-size: cover;
+}
+/* Custom scrollbar for the .custom-scrollbar class */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 12px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+    border: 2px solid #f1f1f1;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* For Firefox */
+.custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
+}

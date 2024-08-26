@@ -1,5 +1,5 @@
 import React from "react";
-import { BiSearch } from "react-icons/bi";
+import { BiLogOut, BiSearch } from "react-icons/bi";
 import { IoSearchCircleSharp } from "react-icons/io5";
 
 const Sidebar = () => {
@@ -27,13 +27,25 @@ const Sidebar = () => {
     </div>
   );
   return (
-    <div className="flex h-[90vh] w-[25vw] ">
+    <div className="flex h-[90vh] w-[40%] ">
       <aside className="h-full flex  flex-col w-16 bg-[#35244d] p-4">
-        <img
-          src="https://openui.fly.dev/openui/24x24.svg?text=👑"
-          alt="App Icon"
-          className="w-8 h-8"
-        />
+        <div className="wraper relative">
+          <img
+            src="https://openui.fly.dev/openui/24x24.svg?text=👑"
+            alt="App Icon"
+            className=" absolute w-8 h-8 -top-4"
+          />
+          <img
+            src="https://openui.fly.dev/openui/24x24.svg?text=👤"
+            alt={`${name}'s Avatar`}
+            className="w-10 h-10 rounded-full"
+          />
+        </div>
+        <div className="mt-auto text-white">
+          <button>
+            <BiLogOut fontSize={30} />
+          </button>
+        </div>
       </aside>
       <div className="flex flex-col  bg-[#402e58] text-white">
         <div className="flex items-center justify-between p-4 border-b border-border">
@@ -85,8 +97,6 @@ const Sidebar = () => {
             />
           </div>
         </div>
-
-      
       </div>
     </div>
   );
