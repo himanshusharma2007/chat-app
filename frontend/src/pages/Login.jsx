@@ -32,11 +32,11 @@ const Login = () => {
           </div>
 
           <div>
-            <button className="h-10 w-full rounded-md flex justify-center items-center text-md bg-blue-500 btn-sm mt-4 py-4">
+            <button className="h-10 w-full rounded-md flex justify-center items-center text-md text-white bg-blue-600 text-lg btn-sm mt-4 py-4">
               Login
             </button>
           </div>
-          <a href="#" className="text-sm text-center w-full hover:underline mt-2 inline-block">
+          <a href="/signup" className="text-sm text-center w-full hover:underline mt-2 inline-block">
             {"Don't"} have an account?
             <span className=" hover:text-blue-600">Sign Up</span>
           </a>

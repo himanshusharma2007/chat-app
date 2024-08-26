@@ -5,8 +5,8 @@ import MessagesContainer from "../components/MessagesContainer";
 const Home = () => {
   return (
     <div className="w-[80vw] h-full bg-white flex   rounded-md">
-      <Sidebar />
-      <MessagesContainer />
+   <Sidebar /> 
+   <MessagesContainer />
     </div>
   );
 };
