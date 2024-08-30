@@ -27,7 +27,7 @@ const Sidebar = () => {
     </div>
   );
   return (
-    <div className="flex h-[90vh] w-[40%] ">
+    <div className="flex h-[90vh] w-[50%] ">
       <aside className="h-full flex  flex-col w-16 bg-[#35244d] p-4">
         <div className="wraper relative">
           <img
@@ -84,17 +84,7 @@ const Sidebar = () => {
               message="Welcome to the group."
               time="Tuesday"
             />
-            <ConversationItem
-              name="Michael Wong"
-              message="Typing..."
-              time="10/24/17"
-              typing
-            />
-            <ConversationItem
-              name="Art Williams, Nick B..."
-              message="Richard Joined!"
-              time="10/24/17"
-            />
+       
           </div>
         </div>
       </div>

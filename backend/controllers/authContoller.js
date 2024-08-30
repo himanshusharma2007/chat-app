@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const generateTokenAndSetCookie = require("../utils/generateToken.js");
 
 module.exports.signupUser = async (req, res) => {
+  console.log("signup function called");
   const { fullName, userName, email, password, confirmPassword, gender } =
     req.body;
   if (password !== confirmPassword) {
@@ -35,7 +36,7 @@ module.exports.signupUser = async (req, res) => {
     console.log("jwt key", process.env.NODE_ENV);
 
     generateTokenAndSetCookie(createUser._id, res);
-    res.status(201).send("user created successfully");
+    res.status(201).send(createUser);
   } catch (error) {
     console.log("error in created the user :>> ", error.message);
   }
