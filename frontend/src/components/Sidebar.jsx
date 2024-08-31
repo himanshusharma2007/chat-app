@@ -1,8 +1,11 @@
 import React from "react";
 import { BiLogOut, BiSearch } from "react-icons/bi";
 import { IoSearchCircleSharp } from "react-icons/io5";
+import { logoutUser } from "../sevices/authServices";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
   const ConversationItem = ({ name, message, time, typing }) => (
     <div
       className={`flex items-center p-4 rounded-lg  hover:bg-[#5d447f] cursor-pointer  ${
@@ -42,7 +45,12 @@ const Sidebar = () => {
           />
         </div>
         <div className="mt-auto text-white">
-          <button>
+          <button
+            onClick={() => {
+              logoutUser();
+              navigate("/login");
+            }}
+          >
             <BiLogOut fontSize={30} />
           </button>
         </div>
@@ -84,7 +92,6 @@ const Sidebar = () => {
               message="Welcome to the group."
               time="Tuesday"
             />
-       
           </div>
         </div>
       </div>

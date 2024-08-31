@@ -1,19 +1,21 @@
 import React, { useState } from "react";
-
+import { signupUser } from "../sevices/authServices";
+import { useNavigate } from "react-router-dom";
 const SignUp = () => {
   const [fullName, setFullName] = useState("");
-  const [username, setUsername] = useState("");
+  const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [gender, setGender] = useState("Male");
   const [errors, setErrors] = useState({});
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const validateForm = () => {
     let formErrors = {};
 
     if (!fullName.trim()) formErrors.fullName = "Full Name is required";
-    if (!username.trim()) formErrors.username = "Username is required";
+    if (!userName.trim()) formErrors.userName = "Username is required";
     if (!password) formErrors.password = "Password is required";
     if (password !== confirmPassword)
       formErrors.confirmPassword = "Passwords do not match";
@@ -28,13 +30,16 @@ const SignUp = () => {
       // Handle successful form submission
       setLoading(true);
       try {
-        const res = await fetch("/api/auth/signup", {
-          method: "POST",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify({ fullName, username, password, gender, email }),
-        });
-        console.log("data :>> ",res);
-        const data = await res.json();
+        let response = await signupUser(
+          fullName,
+          userName,
+          password,
+          gender,
+          email
+        );
+
+        console.log("data :>> ", response.data);
+        navigate("/login");
       } catch (error) {
         console.log("error in signup  :>> ", error.message);
       } finally {
@@ -42,7 +47,7 @@ const SignUp = () => {
       }
       console.log("Form submitted", {
         fullName,
-        username,
+        userName,
         password,
         gender,
         email,
@@ -98,11 +103,11 @@ const SignUp = () => {
               type="text"
               placeholder="johndoe"
               className="w-full input input-bordered h-10"
-              value={username}
+              value={userName}
               onChange={(e) => setUsername(e.target.value)}
             />
-            {errors.username && (
-              <p className="text-red-500 text-sm">{errors.username}</p>
+            {errors.userName && (
+              <p className="text-red-500 text-sm">{errors.userName}</p>
             )}
           </div>
 

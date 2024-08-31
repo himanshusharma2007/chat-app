@@ -4,11 +4,11 @@ const generateTokenAndSetCookie = require("../utils/generateToken.js");
 
 module.exports.signupUser = async (req, res) => {
   console.log("signup function called");
-  const { fullName, userName, email, password, confirmPassword, gender } =
-    req.body;
-  if (password !== confirmPassword) {
-    res.status(400).send("password don't match");
-  }
+  const { fullName, userName, email, password, gender } = req.body;
+  console.log("req.body :>> ", req.body);
+  // if (password !== confirmPassword) {
+  //   res.status(400).send("password don't match");
+  // }
   let userWithName = await userModel.findOne({ userName });
   let userWithEmail = await userModel.findOne({ email });
   if (userWithName) {
@@ -33,9 +33,9 @@ module.exports.signupUser = async (req, res) => {
       profilePic: gender === "male" ? boyAvtarPic : girlAvtarPic,
     });
     await createUser.save();
-    console.log("jwt key", process.env.NODE_ENV);
 
     generateTokenAndSetCookie(createUser._id, res);
+    console.log("user created successfuly ");
     res.status(201).send(createUser);
   } catch (error) {
     console.log("error in created the user :>> ", error.message);
@@ -44,13 +44,19 @@ module.exports.signupUser = async (req, res) => {
 
 module.exports.loginUser = async (req, res) => {
   try {
+    console.log("login route called");
     const { email, password } = req.body;
+    console.log('res.body :>> ', req.body);
     let user = await userModel.findOne({ email });
+    console.log('user :>> ', user);
     let isPswdCorrect = await bcrypt.compare(password, user?.password || "");
     if (isPswdCorrect) {
       generateTokenAndSetCookie(user._id, res);
+      console.log("login sccessfully ");
+
       res.status(200).send("you can login");
     } else {
+      console.log("invalid credentials ")
       res.status(400).send("email or password is incorrect");
     }
   } catch (error) {
@@ -61,8 +67,9 @@ module.exports.loginUser = async (req, res) => {
 module.exports.logoutUser = (req, res) => {
   try {
     res.cookie("jwt", "", { maxAge: 0 });
-    res.status(200).send("you are logout") 
+    console.log("you are logout ")
+    res.status(200).send("you are logout");
   } catch (error) {
-      console.log("error in created the user :>> ", error.message);
+    console.log("error in created the user :>> ", error.message);
   }
 };
