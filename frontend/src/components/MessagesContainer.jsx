@@ -9,7 +9,7 @@ const MessagesContainer = () => {
   const [noMessageSelected, setNoMessageSelected] = useState(false);
   const Message = ({ isUser }) => {
     return (
-      <div class={`chat chat-${isUser ? "end" : "start"}`}>
+      <div class={`chat chat-${isUser ? "end" : "start"} bg-red-500`}>
         <div class="chat-image avatar">
           <div class="w-10 rounded-full">
             <img
@@ -68,7 +68,7 @@ const MessagesContainer = () => {
           </header>
           <div className="messages overflow-auto custom-scrollbar">
             <Message isUser />
-            <Message />
+            {/* <Message />
             <Message isUser />
             <Message />
             <Message isUser />
@@ -78,7 +78,7 @@ const MessagesContainer = () => {
             <Message isUser />
             <Message />
             <Message isUser />
-            <Message />
+            <Message /> */}
           </div>
           <div className="message-box flex justify-between space-x-3 p-4 w-full  mt-auto border-[1px] border-zinc-900 rounded-full text-gray-700">
             <button>

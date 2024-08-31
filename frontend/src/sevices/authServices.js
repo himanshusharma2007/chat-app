@@ -22,3 +22,7 @@ export const logoutUser = async () => {
   let response = await api.get("/auth/logout",);
   return response;
 };
+export const getAllUsers = async () => {
+  let response = await api.get("/users",);
+  return response;
+};

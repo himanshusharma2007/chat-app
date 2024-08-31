@@ -1,11 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BiLogOut, BiSearch } from "react-icons/bi";
 import { IoSearchCircleSharp } from "react-icons/io5";
-import { logoutUser } from "../sevices/authServices";
+import { getAllUsers, logoutUser } from "../sevices/authServices";
 import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
   const navigate = useNavigate();
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    console.log("users :>> ", users);
+  }, [users]);
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        let response = await getAllUsers();
+        setUsers(response.data);
+        console.log("response", response);
+      } catch (error) {
+        console.log("error in fetching users :>> ", error);
+      }
+    };
+    fetchUsers();
+  }, []);
   const ConversationItem = ({ name, message, time, typing }) => (
     <div
       className={`flex items-center p-4 rounded-lg  hover:bg-[#5d447f] cursor-pointer  ${
@@ -77,21 +94,17 @@ const Sidebar = () => {
         <div className="flex-1 overflow-y-auto">
           <h2 className="p-4 font-semibold text-muted">Recent</h2>
           <div className="space-y-2">
-            <ConversationItem
-              name="Art Williams"
-              message="Hey man, I wanted to ask..."
-              time="Now"
-            />
-            <ConversationItem
-              name="Nick Blanche"
-              message="Nice Job!"
-              time="Today"
-            />
-            <ConversationItem
-              name="Richard McMasters"
-              message="Welcome to the group."
-              time="Tuesday"
-            />
+            {users &&
+              users.map((user) => {
+                return (
+                  <ConversationItem
+                    key={user._id} // Always add a unique key when rendering a list
+                    name={user.fullName}
+                    message="Hey man, I wanted to ask..."
+                    time="Now"
+                  />
+                );
+              })}
           </div>
         </div>
       </div>
