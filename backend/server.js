@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 3000;
 const authRouter = require("./routers/authRouter");
 const messageRouter = require("./routers/messageRouter");
 const getUserRouter = require("./routers/getUserRouter");
+const homeRouter = require("./routers/homeRouter");
 const cookieParser = require("cookie-parser");
 app.use(express.json());
 app.use(cookieParser());
@@ -23,6 +24,7 @@ app.use(
 app.use("/api/auth", authRouter);
 app.use("/api/messages", messageRouter);
 app.use("/api/users", getUserRouter);
+app.use("/api/chats", homeRouter);
 
 app.get("/", (req, res) => {
   res.send("this is home ");

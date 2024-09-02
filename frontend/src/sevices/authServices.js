@@ -26,3 +26,7 @@ export const getAllUsers = async () => {
   let response = await api.get("/users",);
   return response;
 };
+export const getUser = async () => {
+  let response = await api.get("/auth/user");
+  return response;
+};

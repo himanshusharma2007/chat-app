@@ -47,7 +47,7 @@ const Sidebar = () => {
     </div>
   );
   return (
-    <div className="flex h-[90vh] w-[50%] ">
+    <div className="flex h-[90vh] w-[30%] ">
       <aside className="h-full flex  flex-col w-16 bg-[#35244d] p-4">
         <div className="wraper relative">
           <img

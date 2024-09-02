@@ -9,7 +9,7 @@ const MessagesContainer = () => {
   const [noMessageSelected, setNoMessageSelected] = useState(false);
   const Message = ({ isUser }) => {
     return (
-      <div class={`chat chat-${isUser ? "end" : "start"} bg-red-500`}>
+      <div class={`chat  chat-${isUser ? "end" : "start"} `}>
         <div class="chat-image avatar">
           <div class="w-10 rounded-full">
             <img
@@ -44,7 +44,7 @@ const MessagesContainer = () => {
     );
   };
   return (
-    <div className="w-full flex flex-col justify-between flex-grow-1 p-4 h-[90vh]   text-gray-700">
+    <div className="w-[70%] flex flex-col justify-between flex-grow-1 p-4 h-[90vh]   text-gray-700">
       {noMessageSelected ? (
         <NoChatSelected />
       ) : (

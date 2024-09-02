@@ -46,9 +46,9 @@ module.exports.loginUser = async (req, res) => {
   try {
     console.log("login route called");
     const { email, password } = req.body;
-    console.log('res.body :>> ', req.body);
+    console.log("res.body :>> ", req.body);
     let user = await userModel.findOne({ email });
-    console.log('user :>> ', user);
+    console.log("user :>> ", user);
     let isPswdCorrect = await bcrypt.compare(password, user?.password || "");
     if (isPswdCorrect) {
       generateTokenAndSetCookie(user._id, res);
@@ -56,7 +56,7 @@ module.exports.loginUser = async (req, res) => {
 
       res.status(200).send("you can login");
     } else {
-      console.log("invalid credentials ")
+      console.log("invalid credentials ");
       res.status(400).send("email or password is incorrect");
     }
   } catch (error) {
@@ -67,8 +67,16 @@ module.exports.loginUser = async (req, res) => {
 module.exports.logoutUser = (req, res) => {
   try {
     res.cookie("jwt", "", { maxAge: 0 });
-    console.log("you are logout ")
+    console.log("you are logout ");
     res.status(200).send("you are logout");
+  } catch (error) {
+    console.log("error in created the user :>> ", error.message);
+  }
+};
+module.exports.getUser = (req, res) => {
+  try {
+    console.log("get user called ");
+    res.status(200).json(res.user);
   } catch (error) {
     console.log("error in created the user :>> ", error.message);
   }
